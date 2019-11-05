@@ -73,12 +73,14 @@
 <li class="chapter" data-level="0.2" data-path=""><a href="#sobre-este-documento"><i class="fa fa-check"></i><b>0.2</b> Sobre este documento</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path=""><a href="#secao_1"><i class="fa fa-check"></i><b>1</b> Dados Longitudinais e Agrupados</a></li>
-<li class="chapter" data-level="2" data-path=""><a href="#secao_2"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a></li>
+<li class="chapter" data-level="2" data-path=""><a href="#secao_2"><i class="fa fa-check"></i><b>2</b> Conceitos Básicos</a><ul>
+<li class="chapter" data-level="2.1" data-path=""><a href="#fontes-de-variabilidade"><i class="fa fa-check"></i><b>2.1</b> Fontes de Variabilidade:</a></li>
+<li class="chapter" data-level="2.2" data-path=""><a href="#consequências-de-ignorar-a-correlação-entre-dados-longitudinais"><i class="fa fa-check"></i><b>2.2</b> Consequências de Ignorar a Correlação entre Dados Longitudinais</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path=""><a href="#secao_3"><i class="fa fa-check"></i><b>3</b> Modelos Lineares para Dados Longitudinais</a></li>
 <li class="chapter" data-level="4" data-path=""><a href="#secao_4"><i class="fa fa-check"></i><b>4</b> Estimação e Inferência Estatística</a></li>
-<li class="chapter" data-level="5" data-path=""><a href="#secao_5"><i class="fa fa-check"></i><b>5</b> Modelando a Média: Perfis de Resposta</a></li>
-<li class="chapter" data-level="6" data-path=""><a href="#secao_6"><i class="fa fa-check"></i><b>6</b> Modelando a Média: Curvas Paramétricas</a></li>
-<li class="chapter" data-level="7" data-path=""><a href="#secao_7"><i class="fa fa-check"></i><b>7</b> Modelando a Covariância</a></li>
+<li class="chapter" data-level="5" data-path=""><a href="#secao_5"><i class="fa fa-check"></i><b>5</b> Modelando a Média</a></li>
+<li class="chapter" data-level="6" data-path=""><a href="#secao_7"><i class="fa fa-check"></i><b>6</b> Modelando a Covariância</a></li>
 <li class="chapter" data-level="" data-path=""><a href="#referências-e-links-úteis"><i class="fa fa-check"></i>Referências e Links Úteis</a></li>
 <li class="divider"></li>
 <li>
@@ -172,11 +174,59 @@ Autor: José Angelo Rosa Bastos (278049)<br>Ministrante: Rodrigo Citton dos Reis
 <h1><span class="header-section-number">Capítulo 1</span> Dados Longitudinais e Agrupados</h1>
 <p>Esta seção se refere às páginas <strong>23 a 40</strong> do ‘.pdf’ do livro.</p>
 <p>A característica definidora de estudos longitudinais é que medidas dos mesmos indivíduos são tomadas repetidamente ao longo do tempo, assim permitindo o estudo direto das mudanças nas variáveis de interesse com o passar do tempo.</p>
+<ul>
+<li>É possível captar a mudança <strong>dentro</strong> do indivídio.</li>
+<li>Em um estudo <strong>transversal</strong>, em que cada indivíduo tem suas medidas tomadas em apenas uma ocasião, é possível apenas estimar diferenças nas respostas <strong>entre</strong> indivíduos.</li>
+</ul>
+<p>Mas medidas obtidas em múltiplas ocasiões para um determinado indivíduo em geral possuem <strong>correlação positiva</strong>. Esta correlação deve ser levada em conta na análise.</p>
+<p>Enfatizando a diferença, dados <strong>agrupados</strong> podem ser obtidos amostrando-se grupos que surgem naturalmente na população. Dados agrupados não são necessariamente longitudinais, mas dados longitudinais são um caso particular de dados agrupados (com ordenação natural nas medições dentro de um grupo/indivíduo).</p>
+<ul>
+<li>Com relação a dados agrupados, esperamos que medidas de um mesmo indivíduo sejam mais similares que medidas entre indivíduos distintos.</li>
+<li>O grau de agrupamento dos dados pode ser expresso pela <strong>correlação</strong> entre as medidas de um mesmo indivíduo, sendo que esta correlação <strong>invalida a suposição de independência dos modelos estatísticos</strong>.</li>
+<li>Os métodos para análise de dados longitudinais são casos especiais dos métodos para análise de dados agrupados, que serão tratados mais adiante no curso.</li>
+<li>Também ao final do curso, serão discutidos <strong>dados multiníveis</strong>, em que as observações podem ser agrupadas em mais de um nível.</li>
+</ul>
 
 </div>
 <div id="secao_2" class="section level1">
 <h1><span class="header-section-number">Capítulo 2</span> Conceitos Básicos</h1>
+<p>Pode-se pensar no tempo como um <strong>escore de diferenças</strong>: uma função que mensura a diferença entre as medidas de cada indivíduo. Com isso em mente, uma análise longitudinal das mudanças dentro de um indivíduo tem dois estágios:
+1. Caracterização da mudança individual na variável-resposta em termos deste escore de diferenças;
+2. Relação destas estimativas de mudanças individuais a diferenças <strong>interindividuais</strong> em covariáveis de interesse.</p>
+<p>Estas duas etapas da análise são <strong>combinadas em um modelo estatístico</strong>. Ou seja, um único modelo para dados longitudinais captura tanto a mudança dos indivíduos ao longo do tempo quanto a relação das mudanças individuais na variável-resposta a covariáveis selecionadas.</p>
+<p>Ao compararem-se os modelos para dados longitudinais com aqueles para dados transversais, pode-se obter muita precisão levando em conta a heterogeneidade natural entre os indivíduos com relação a variáveis-incômodas (ou seja, utilizando modelos para dados longitudinais). Isto porque os fatores externos que influenciam a variável-resposta homogeneamente no período do estudo são <strong>eliminados ou bloqueados</strong> quando as respostas de um indivíduo são comparadas em ocasiões distintas.</p>
+<p>Com relação ao balanceamento dos dados:
+- Quando o <strong>número</strong> e <strong>momento</strong> das medições repetidas são os <strong>mesmos</strong> para todos indivíduos, dizemos que os dados são “<strong>balanceados</strong>”.
+- Quando uma ou mais medições de um ou mais indivíduos é tomada em um <strong>momento diferente do programado</strong> ou <strong>não pode ser tomada</strong> (caso <em>missing</em>), os dados são ditos “<strong>desbalanceados</strong>”.
+- Para distinguir o desequilíbrio por dados <em>missing</em>, é dito que um conjunto de dados ou delineamento desequilibrado por dados <em>missing</em> é “<strong>incompleto</strong>”. Este tipo de dados requer cuidados para recuperar as informações perdidas.
+- Dados longitudinais podem ser equilibrados/desequilibrados <strong>e</strong> completos/incompletos.</p>
+<p>As observações correlacionadas são uma característica positiva dos dados longitudinais, pois <strong>melhoram a precisão das estimativas obtidas</strong>.
+- Porém, viola o pressuposto de normalidade e por isso precisa ser tratada com cuidado.
+- Em geral, as medidas repetidas de um mesmo indivíduo em delineamentos longitudinais são <strong>positivamente</strong> correlacionadas.</p>
+<p>Muitas técnicas estatísticas fazem a suposição de que <strong>observações são variáveis aleatórias independentes</strong>. Esta suposição é razoável quando o delineamento exigir <strong>uma observação por indivíduo</strong> e os indíviduos sejam selecionados <strong>aleatoriamente</strong> de uma população ou designados <strong>aleatoriamente</strong> a diferentes tratamentos. Em delineamentos longitudinais, pode-se explicar e trabalhar nos pressupostos tradicionais inválidos estabelecendo-se uma <strong>estrutura</strong> para a matriz de covariância:
+- A heterogeneidade da variância pode ser explicada ao permitir que elementos da <strong>diagonal</strong> da matriz variem
+- A falta de independência entre as medições repetidas dos indivíduos é explicada permitindo que elementos <strong>fora da diagonal</strong> da matriz variem (sejam diferentes de zero).
+- Além disso, espera-se que as correlações sejam <strong>positivas</strong> e a natureza sequencial dos dados longitudinais implica na possibilidade de um <strong>padrão</strong> para as correlações (que será modelado).</p>
+<div id="fontes-de-variabilidade" class="section level2">
+<h2><span class="header-section-number">2.1</span> Fontes de Variabilidade:</h2>
+<p>Existem essencialmente três fontes potenciais de variabilidade nos estudos longitudinais:
+1. Variação entre-unidades:
+- Medidas de um mesmo indivíduo são mais similares que medidas entre indivíduos, ou seja, há menos variação.
+- Os efeitos de determinado tratamento não afetam uniformemente todos os indivíduos, o que influencia na correlação positiva e pode criar um padrão decrescente de correlação à medida que a distância de tempo entre as medidas comparadas aumenta.
+- Para levar em conta esta variabilidade, introduzimos <strong>efeitos aleatórios</strong> aos modelos.
+2. Variação intra-unidades:
+- Dependendo da variável-resposta analisada, a distância de tempo entre as medições realizadas para um indivíduo pode afetar a correlação positiva.
+3. Erro de medição:
+- Em determinados casos, a variação devido ao erro de medida pode não ser negligenciável.
+- Muitos estudos não terão observações suficientes para estimar as destintas fontes de variabilidade causadas por erro de medição, então estas são combinadas em um único componente de variabilidade intra-indivíduo.</p>
+</div>
+<div id="consequências-de-ignorar-a-correlação-entre-dados-longitudinais" class="section level2">
+<h2><span class="header-section-number">2.2</span> Consequências de Ignorar a Correlação entre Dados Longitudinais</h2>
+<ul>
+<li>Ignorar a correlação positiva pode fazer com que obtenhamos estimações inválidas para a <strong>variância da mudança na resposta média</strong>, o que acarretará em <strong>erros padrões muito grandes</strong>, <strong>intervalos de confiança muito largos</strong> e <strong>p-values</strong> muito grandes para o teste H0: sigma=0.</li>
+</ul>
 
+</div>
 </div>
 <div id="secao_3" class="section level1">
 <h1><span class="header-section-number">Capítulo 3</span> Modelos Lineares para Dados Longitudinais</h1>
@@ -187,15 +237,11 @@ Autor: José Angelo Rosa Bastos (278049)<br>Ministrante: Rodrigo Citton dos Reis
 
 </div>
 <div id="secao_5" class="section level1">
-<h1><span class="header-section-number">Capítulo 5</span> Modelando a Média: Perfis de Resposta</h1>
-
-</div>
-<div id="secao_6" class="section level1">
-<h1><span class="header-section-number">Capítulo 6</span> Modelando a Média: Curvas Paramétricas</h1>
+<h1><span class="header-section-number">Capítulo 5</span> Modelando a Média</h1>
 
 </div>
 <div id="secao_7" class="section level1">
-<h1><span class="header-section-number">Capítulo 7</span> Modelando a Covariância</h1>
+<h1><span class="header-section-number">Capítulo 6</span> Modelando a Covariância</h1>
 
 </div>
 <div id="referências-e-links-úteis" class="section level1 unnumbered">
