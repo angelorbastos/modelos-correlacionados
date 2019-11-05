@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1572936558409.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "6B533214",
+    "lastKnownWriteTime" : 1572936489,
+    "last_content_update" : 1572936489,
+    "path" : "E:/Angelo/Projetos/Guará/Repositórios/modelos-correlacionados/bookdown/_output.yml",
+    "project_path" : "bookdown/_output.yml",
+    "properties" : {
+        "cursorPosition" : "15,12",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

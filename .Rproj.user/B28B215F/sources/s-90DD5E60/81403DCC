@@ -1,24 +1,24 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1572935899655.000,
+    "created" : 1572936560189.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
-    "id" : "D8F0D77C",
-    "lastKnownWriteTime" : 1572935921,
-    "last_content_update" : 1572935921427,
+    "hash" : "109842565",
+    "id" : "81403DCC",
+    "lastKnownWriteTime" : 1572936665,
+    "last_content_update" : 1572936665226,
     "path" : "E:/Angelo/Projetos/Guará/Repositórios/modelos-correlacionados/bookdown/_bookdown.yml",
     "project_path" : "bookdown/_bookdown.yml",
     "properties" : {
-        "cursorPosition" : "5,24",
+        "cursorPosition" : "0,4",
         "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 2,
+    "relative_order" : 3,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "yaml"
