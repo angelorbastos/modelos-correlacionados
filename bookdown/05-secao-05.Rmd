@@ -1,1 +1,9 @@
 # Modelando a Média {#secao_5}
+
+Há duas técnicas predominantes para a modelagem de médias e dados longitudinais:
+
+1. Perfis de resposta:
+  - Permite padrões arbitrários na resposta média ao longo do tempo, que são vistos como perfis de resposta e analisados entre os grupos de interesse com relação ao efeito da interação **grupo x tempo** (efeito substantivo) sobre a variável-resposta ou aos efeitos incômodos de **grupo** e **tempo** sobre esta (que, no caso dos perfis de resposta serem avaliados como paralelos, tornam-se efeitos principais). 
+  - No caso dos perfis de resposta serem paralelos (**não há efeito da interação grupo x tempo**), nos questionamos sobre os perfis terem médias constantes ao longo do tempo (**não há efeito do tempo**) e sobre eles estarem no mesmo níveis (serem iguais, ou seja, **não há efeito do grupo**).
+2. Curvas paramétricas ou semi-paramétricas:
+
