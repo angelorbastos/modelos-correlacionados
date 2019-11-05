@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3848296290",
+    "hash" : "0",
     "id" : "B4379956",
-    "lastKnownWriteTime" : 1572936120,
-    "last_content_update" : 1572936120872,
+    "lastKnownWriteTime" : 1572936331,
+    "last_content_update" : 1572936331137,
     "path" : "E:/Angelo/Projetos/Guará/Repositórios/modelos-correlacionados/bookdown/index.Rmd",
     "project_path" : "bookdown/index.Rmd",
     "properties" : {
-        "cursorPosition" : "107,2694",
-        "scrollLine" : "98"
+        "cursorPosition" : "111,5",
+        "scrollLine" : "107"
     },
     "read_only" : false,
     "read_only_alternatives" : [

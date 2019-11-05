@@ -110,7 +110,7 @@ baseAlimEsp <- base[which(base$Q9 == "Sim"), ]
 <br>
 
 <div>
-  <iframe style="height: 600px; width: 90%; border: 1px solid #FF7400;" src="../documents/2011 - Fitzmaurice-Laird-Ware - Applied Longitudinal Analysis.pdf" name="iframe-pdfs"></iframe>
+  <iframe style="height: 600px; width: 90%; border: 1px solid #FF7400;" src="./documents/2011 - Fitzmaurice-Laird-Ware - Applied Longitudinal Analysis.pdf" name="iframe-pdfs"></iframe>
 </div>
 
 ## Sobre este documento
