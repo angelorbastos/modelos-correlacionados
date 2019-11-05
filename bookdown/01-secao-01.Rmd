@@ -1,0 +1,5 @@
+# Dados Longitudinais e Agrupados {#secao_1}
+
+Esta seção se refere às páginas **23 a 40** do '.pdf' do livro.
+
+A característica definidora de estudos longitudinais é que medidas dos mesmos indivíduos são tomadas repetidamente ao longo do tempo, assim permitindo o estudo direto das mudanças nas variáveis de interesse com o passar do tempo.

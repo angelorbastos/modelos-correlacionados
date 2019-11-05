@@ -1,0 +1,1 @@
+# Modelos Lineares para Dados Longitudinais {#secao_3}

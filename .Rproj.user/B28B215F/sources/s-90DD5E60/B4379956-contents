@@ -1,0 +1,120 @@
+--- 
+title: 'Modelos para Dados Correlacionados<br>'
+author: '</em><h1 style="text-align:center;font-size:24px;">Tópicos da cadeira "MAT02035 - Modelos para Dados Correlacionados"</h1><h3 style="text-align:center;">Autor: José Angelo Rosa Bastos (278049)<br>Ministrante: Rodrigo Citton dos Reis<br>Novembro de 2019</h3><em>'
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+github-repo: angelorbastos
+---
+
+# MAT02035 - Introdução {-}
+
+```{r setup, include=FALSE}
+# Options do R e knitr:
+knitr::opts_chunk$set(echo = TRUE)
+options(scipen=100, digits = 2)
+
+# Libraries:
+ler_libs <- function(packages){
+  instalar <- packages[!(packages %in% installed.packages()[, "Package"])]
+  
+  if(length(instalar) > 0){
+    install.packages(pkgs = instalar, dependencies = TRUE)
+  }
+  invisible(sapply(packages, require, character.only = TRUE))
+}
+
+ler_libs(packages = c("haven", "readxl", "tidyverse","tidyr","reticulate", "Hmisc", "here", "DT", "htmltools", "plotly", "forcats","highcharter", "devtools", "shiny"))
+
+# Carregando a base e formatando-a:
+base <- read_xlsx(paste0(here("bases"), "/2018 - Questionário de Monitoramento(respostas)_Googleforms_RS.xlsx"), sheet = "Escolas")[2:81]
+
+variaveis <- c("ID_Escola", "Localizacao", "Dep_Adm", "Area_Indigena", "Alunado")
+
+for(itNomes in 6:80){
+  variaveis[itNomes] <- paste0("Q", itNomes)
+}
+
+labels <- names(base)
+
+for(itNomes in 1:80){
+  names(labels)[itNomes] <- variaveis[itNomes]
+}
+
+names(base) <- variaveis
+label(base) = as.list(labels[match(names(base), names(labels))])
+
+# Adicionando variáveis derivadas da 'Alunado':
+derivs <- c("CRECHE", "PRÉ", "FUNDAMENTAL", "MÉDIO", "AEE", "MAIS EDUCAÇÃO", "TEMPO INTEGRAL")
+
+for(i in 1:length(derivs)){
+  eval(parse(text=paste0("base$Derivada_", i, " <- ifelse(regexpr('", derivs[i], "', toupper(base$Alunado)) > -1, 1, 0)")))
+}
+
+colnames(base)[81:87] <- c("Creche", "Pre_Escola", "Fundamental", "Medio", "AEE", "Mais_Educacao", "Tempo_Integral")
+
+# Adicionando variáveis derivadas de 'Patologias Diagnosticadas - Atendimento Alimentar Especializado':
+derivs <- c("[Ii]ntoler[aâ]ncia [aà] [Ll]actose", "[Ii]ntoler[aâ]ncia a[o]* [Oo]vo", "[Aa]lergia a[o]* [Oo]vo",
+            "[Aa]lergia [Aa]limentar", "[Oo]besidade", "[Dd]e [Ll]echi", "[Dd]iabetes", "[Dd]e [Ll]ewy",
+            "[Dd]islipidemias", "[Dd]oen[cç]a [Cc]el[ií]aca", "[Aa]lergia [aà] [Pp]rote[ií]na", "[Dd]egluti[cç][aã]o")
+
+for(i in 1:length(derivs)){
+  eval(parse(text = paste0("base$Derivada_", i, " <- ifelse(regexpr('", derivs[i], "', base$Q10) > -1, 1, 0)")))
+}
+
+colnames(base)[88:99] <- c("IntLactose", "IntOvo", "AlOvo", "AlAlimentar", "Obesidade",
+                           "Lechi", "Diabetes", "Lewy", "Dislip", "Celiaca", "AlProteina", "Deglut")
+
+# Adicionando variáveis derivadas de 'Disponibilização do Cardápio':
+derivs <- c("[Rr]efeit[oó]rio", "[Cc]ozinha", "[Mm]ural", "[Dd]ire[cç][aã]o", "[Pp]ais", "[Aa]genda")
+
+for(i in 1:length(derivs)){
+  eval(parse(text = paste0("base$Derivada_", i, " <- ifelse(regexpr('", derivs[i], "', base$Q18) > -1, 1, 0)")))
+}
+
+colnames(base)[100:105] <- c("Refeitorio", "Cozinha", "Mural", "Direcao", "Pais", "Agenda")
+
+# Adicionando variáveis derivadas de 'Motivo do Não-Cumprimento do Cardápio':
+#   - A categoria 'sem motivo' é dada pelos missings em qualquer uma das outras categorias geradas.
+derivs <- c("[Aa]us[eê]ncia", "[Ii]rregularidade[s]*", "[Cc]ompra[s]*", "[Ee]strutura", "[Ii]mprevisto[s]*", "[Pp]lanejamento")
+
+for(i in 1:length(derivs)){
+  eval(parse(text = paste0("base$Derivada_", i, " <- ifelse(regexpr('", derivs[i], "', base$Q17) > -1, 1, 0)")))
+}
+
+colnames(base)[106:111] <- c("Ausencia", "Irregularidade", "Compra", "Estrutura", "Imprevisto", "Planejamento")
+
+# Adicionando variáveis derivadas de 'Local de Consumo dos Alimentos':
+derivs <- c("[Rr]efeit[oó]rio", "[Ss]ala de [Aa]ula", "[Cc]ozinha [Aa]daptada", "[Pp][aá]tio [Dd]a [Ee]scola")
+
+for(i in 1:length(derivs)){
+  eval(parse(text = paste0("base$Derivada_", i, " <- ifelse(regexpr('", derivs[i], "', base$Q23) > -1, 1, 0)")))
+}
+
+colnames(base)[112:115] <- c("ConsumoRefeitorio", "ConsumoSala", "ConsumoCozinha", "ConsumoPatio")
+
+# Criando base auxiliar somente com respostas das questões 6 a 8:
+#   - Fico somente com as observações que têm alguma resposta nestas questões e participam dos Programas Escola em Tempo Integral e Mais Educação
+base6a8 <- base[which((!is.na(base$Q6) | !is.na(base$Q7) | !is.na(base$Q8)) & (regexpr('[Tt]empo [Ii]ntegral', base$Alunado) > -1 | regexpr('[Mm]ais [Ee]ducação', base$Alunado) > -1)), 1:8]
+
+# Criando base auxiliar para a seção de atendimento a alunos com necessidades alimentares especiais:
+
+#   - Retirei o caso em que a escola declarava não atender a alunos com necessidades especiais porém respondia às questões relacionadas.
+baseAlimEsp <- base[which(base$Q9 == "Sim"), ]
+```
+
+## Material das aulas
+
+<div class="dropdown pull-left font-settings js-toolbar-action"><a class="btn toggle-dropdown" aria-label="Configurar Fonte" title="Configurar Fonte" href="#"><button class="dt-button">Escolher material</button></a><div class="dropdown-menu dropdown-right"><div class="dropdown-caret"><span class="caret-outer"></span><span class="caret-inner"></span></div><div class="buttons"><a class="button size-1" style = "color:#FFF4EB;"  href="../documents/2011 - Fitzmaurice-Laird-Ware - Applied Longitudinal Analysis.pdf" target="iframe-pdfs">Livro</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/01_dados_longitudinais_e_agrupados.pdf" target="iframe-pdfs">Aula 1</a><a class="button size-2" style = "color:#FFF4EB;" href="../documents/02_revisao_vet_mat_esp_var.pdf" target="iframe-pdfs">Aula 2</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/03_conceitos_basicos.pdf" target="iframe-pdfs">Aula 3</a><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/04_conceitos_basicos_continuacao.pdf" target="iframe-pdfs">Aula 4</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/05_modelos_lineares_dados_longitudinais.pdf" target="iframe-pdfs">Aula 5</a><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/06_modelos_lineares_dados_longitudinais_continuacao.pdf" target="iframe-pdfs">Aula 6</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/07_modelos_lineares_dados_longitudinais_continuacao2.pdf" target="iframe-pdfs">Aula 7</a><a class="button size-2" style = "color:#FFF4EB;" href="../documents/08_estimacao_inferencia_estatistica.pdf" target="iframe-pdfs">Aula 8</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/09_mm_analisando_perfis_de_respostas.pdf" target="iframe-pdfs">Aula 9</a><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/10_mm_curvas_parametricas.pdf" target="iframe-pdfs">Aula 10</a></div><div class="buttons"><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/11_modelando_a_covariancia.pdf" target="iframe-pdfs">Aula 11</a><a class="button size-2" style = "color:#FFF4EB;"  href="../documents/12_modelos_lineares_de_efeitos_mistos.pdf" target="iframe-pdfs">Aula 12</a></div><div class="buttons"><a class="button size-1" style = "color:#FFF4EB;"  href="../documents/01_Lista.pdf" target="iframe-pdfs">Lista 1</a></div><div class="buttons"><a class="button size-1" style = "color:#FFF4EB;"  href="../documents/02_Lista.pdf" target="iframe-pdfs">Lista 2</a></div></div></div>
+
+<br>
+
+<div>
+  <iframe style="height: 600px; width: 90%; border: 1px solid #FF7400;" src="../documents/2011 - Fitzmaurice-Laird-Ware - Applied Longitudinal Analysis.pdf" name="iframe-pdfs"></iframe>
+</div>
+
+## Sobre este documento
+
+Este é um resumo do material visto em aula no curso MAT02035 da Universidade Federal do Rio Grande do Sul. Foi escrito utilizando o pacote 'bookdown' do R, formatando seu estilo 'gitbook', com algumas formatações adicionais nos scripts '.js' que geram algumas tabelas e textos (que foram adicionados direto na pasta da *library*, em 'bookdown/resources/gitbook/js').
+
+Para verificar o caminho que o R está utilizando para carregar suas *libraries*, utilize a função '.libPaths()' no *console* do R e ele vai retornar uma string com o diretório.

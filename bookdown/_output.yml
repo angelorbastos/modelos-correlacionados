@@ -1,0 +1,24 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: "none"
+  includes:
+    in_header: fonts.html
+  #self_contained: yes # Isso a gente ativa quando quiser que cuspa só um arquivo
+  config:
+    toc:
+      before: |
+        <li><a href='https://github.com/angelorbastos'><img src='../bookdown/images/logo.png' style='width:50%;display:block;margin-left:auto;margin-right:auto;'/></a></li>
+      after: |
+        <li>
+          <a style="text-align:center;" href="https://github.com/angelorbastos"><i style="font-size:30px;text-align:center;" class = "fa fa-github"></i> @angelorbastos</a>
+          <a style="text-align:center;" href="https://github.com/guarastats"><i style="font-size:30px;text-align:center;" class = "fa fa-github"></i> @guarastats</a>
+        </li>
+        <li>
+          <a id="tag-titulo-1" style="text-align:center;position:absolute;left:50%;bottom:2px;transform:translate(-50%,-50%);margin: 0 auto;">Criado por: Angelo Rosa<br><br>04 de novembro de 2019</a>
+        </li>
+    download: ["pdf", "epub"]
+    sharing:
+      github: yes
+      facebook: no
+      twitter: yes
+      all: ['twitter', 'github']

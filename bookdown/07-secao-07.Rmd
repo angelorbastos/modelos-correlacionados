@@ -1,0 +1,1 @@
+# Modelando a Covariância {#secao_7}

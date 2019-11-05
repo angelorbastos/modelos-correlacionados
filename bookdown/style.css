@@ -1,0 +1,239 @@
+/* Aumentando o tamanho da página horizontalmente: */
+.book .book-body .page-wrapper .page-inner {
+  max-width: 90%;
+}
+
+/* Mudando a cor do background do summary: */
+.book .book-summary {
+  background-image: linear-gradient(200deg, #8D4000, #FF7400, #8D4000);
+}
+
+/* Mudando a cor do texto do summary: */
+.book .book-summary ul.summary li a, .book .book-summary ul.summary li span {
+  color: #FFF4EB;
+  font-family: 'Arvo', serif;
+}
+
+/* Mudando a cor do background do header: */
+.book .book-header{
+  background: linear-gradient(200deg, #8D4000, #FF7400, #8D4000);
+}
+
+/* Mudando a cor dos botões do header: */
+.book .book-header .btn {
+  color: #FFEEE0;
+}
+
+/* Mudando a cor quando os botões do header são selecionados #FFF7F1 #FCCAA0: */
+.book .book-header .btn:hover {
+  color: #FFFFFF;
+  font-size: 22px;
+}
+
+/* Adicionando imagem de fundo no corpo do relatório: */
+.book .book-body {
+  background: url(../bookdown/images/logo_fundo.png) no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Deixando as caixas de texto do corpo transparentes, pra aparecer o background: */
+.book .book-body .page-wrapper .page-inner .normal {
+  background:transparent;
+}
+
+/* Mudando a cor dos textos no corpo do relatório: */
+.book .book-body .page-wrapper .page-inner section.normal {
+  color: #371900;
+  text-align: justify;
+}
+
+/* Alinhando os h1 (títulos) no centro: */
+.book .book-body .page-wrapper .page-inner section.normal h1 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h2 {
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal h3 {
+  text-align: left;
+  font-family: 'Abel', sans-serif;
+}
+
+/* Alinhando os textos justificados: */
+.book .book-body .page-wrapper .page-inner section.normal p {
+  text-align: justify;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Mudando a cor do texto no header: */
+.book .book-header h1 a, .book .book-header h1 a:hover {
+  color: #FFF4EB;
+  font-family: 'Tajawal', sans-serif;
+}
+
+/* Mudando a cor de display dos links: */
+.book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/* Mudando a cor de display dos links: */
+.book .book-summary ul.summary li.active>a {
+  font-size: 19px;
+}      
+
+/* Alinhando a os itens do summary verticalmente: */
+.book .book-summary ul.summary li i:hover, .book .book-summary ul.summary li i {
+  vertical-align: middle;
+}
+
+/* Mudando a cor do menu dropdown: */
+.dropdown-menu {
+  background: linear-gradient(130deg, #8D4000, #FF7400);
+}
+
+.dropdown-menu .buttons .button.size-3 {
+    width: 33.3%;
+}
+
+/* Mudando a cor da fonte do menu dropdown: */
+.dropdown-menu .buttons .button {
+  color: #FFF4EB;
+  font-family: 'Arvo', serif;
+}
+
+.dropdown-menu .buttons .button:hover {
+  color: #FFFFFF;
+  text-decoration: none;
+  text-shadow: 2px 2px 5px #FAB479;
+}
+
+/* Mudando a cor da setinha que aparece no header quando o menu aparece: */
+.dropdown-menu .dropdown-caret .caret-inner {
+  border-bottom: 9px solid #8D4000;
+}
+
+/* Mudando as cores das setas de navegação: */
+.book .book-body .navigation {
+  color: #FF7400;
+}
+
+.book .book-body .navigation:hover {
+  color: #8D4000;
+}
+
+/* Mudando a cor dos textos em listas: */
+.book .book-body .page-wrapper .page-inner section.normal li{
+  font-family: 'Source Sans Pro', sans-serif;
+  text-align: justify;
+}
+
+/*******************************************/
+/* Formats para as TABELAS (package 'DT'): */
+/*******************************************/
+/* Formatando os botões de paginação: */
+.dataTables_wrapper .dataTables_paginate {
+  color: #8D4000 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: linear-gradient(to top, #FF7400, #8D4000) !important;
+  font-family: 'Arvo', serif;
+  color: #FFEEE0 !important;
+  border: 1px solid #FF7400 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  font-weight: bold;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+  color: #8D4000 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  color: #FF7400 !important;
+}
+
+div.dt-button-collection {
+  background-color: #FFF4EB !important;
+  border: 1px solid #FF7400 !important;
+}
+
+/* Formatando os botões de cima: */
+button.dt-button, div.dt-button, a.dt-button {
+  border: 1px solid #FF7400 !important;
+  background: linear-gradient(to top, #FF7400, #8D4000) !important;
+  color: #FFEEE0 !important;
+  font-family: 'Arvo', serif !important;
+}
+
+button.dt-button:hover, div.dt-button:hover, a.dt-button:hover {
+  font-weight: bold;
+}
+
+/* Formatando os textos que aparecem nas tables: */
+.dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_filter {
+  font-family: 'Arvo', serif !important;
+  color: #8D4000 !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  border: 1px double #FF7400 !important;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus {
+  outline-color: #8D4000 !important;
+}
+
+.dataTables_wrapper .dataTables_filter input:hover {
+  box-shadow: 0 0 0.3em #8D4000;
+}
+
+/* Formatando as linhas: */
+.book .book-body .page-wrapper .page-inner section.normal table tr:nth-child(odd) {
+  background: #FFF4EB !important;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table td:hover {
+  background: #FF9F4F !important;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal thead th {
+  background: linear-gradient(to top, #FF7400, #8D4000) !important;
+  font-family: 'Abel', sans-serif;
+  color: #FFEEE0 !important;
+  text-align: center;
+  border: 1px double #FF7400 !important;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table tr {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Formatando a borda da table em si: */
+.book .book-body .page-wrapper .page-inner section.normal table {
+  border: 1px double #FF7400 !important;
+  border-bottom: 2px double #FF7400 !important;
+  text-align: center;
+}
+
+/* Formatando a barra de edição da tabela: */
+table.dataTable td.dt-center input {
+  outline-color: #8D4000 !important;
+}
+
+/* Formatando alguns textos definidos no YAML: */
+#tag-titulo-1:hover {
+  color: #FFF4EB;
+  font-size: 1em;
+  font-weight: normal;
+}
